@@ -132,7 +132,7 @@ def parseAttribute(att, info, cf):
             i += parseAnnotation(an, info[i:], cf)
             att['04_runtimevisibleannotations_table'].append(an)
     else:
-        print '#unhandled attribute', att['00_attribute_name']
+        print('#unhandled attribute', att['00_attribute_name'])
         att['03_info'] = info
 
 def parseAnnotation(an, info, cf):
@@ -271,7 +271,7 @@ def writeCode(code_att, linenum_cp_index):
 def decompile(f):
     i = 0
     if binascii.a2b_hex('cafebabe') != f[:4]:
-        print 'error, classfile %s does not start with "cafebabe"' % sys.argv[1]
+        print('error, classfile %s does not start with "cafebabe"' % sys.argv[1])
         sys.exit(1)
 
     cf = {}
@@ -487,6 +487,6 @@ if __name__ == '__main__':
     elif len(sys.argv) == 4 and sys.argv[1] == '-c':
         compile(eval(open(sys.argv[2]).read()), sys.argv[3])
     else:
-        print 'usage:\n classfile.py -d <classfile>\n classfile.py -c <pyobjfile> <classfile>'
+        print('usage:\n classfile.py -d <classfile>\n classfile.py -c <pyobjfile> <classfile>')
         sys.exit(1)
 
