@@ -26,7 +26,7 @@ def parseAttribute(att, info, cf):
         i = 8
         while i < 8 + att['05_code_length']:
             opsize = 0
-            mnem, fmt, plen, add_comment = opcodes.code2mnem[ord(info[i])]
+            mnem, fmt, plen, add_comment = opcodes.code2mnem[info[i]]
             opsize += 1
             if mnem == 'lookupswitch':
                 while (i + opsize) % 4 != 0: opsize += 1 # skip to 4-byte boundary
@@ -284,8 +284,8 @@ def decompile(f):
     cf['05_cp_info'] = [{'00_index' : 0, '00_tag_name' : 'unusable at start to get numbering working', '01_tag' : 0}]
     x = 1
     while x < cf['04_constant_pool_count']:
-        tag = ord(f[i])
-        result = {'00_index' : x, '01_tag' : ord(f[i])}
+        tag = f[i]
+        result = {'00_index' : x, '01_tag' : f[i]}
         if tag == 1: # CONSTANT_Utf8
             result['00_tag_name'] = 'CONSTANT_Utf8'
             length = struct.unpack('>h', f[i+1:i+3])[0]
