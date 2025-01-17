@@ -3,7 +3,7 @@ import sys
 import binascii
 import struct
 import pprint
-import opcodes
+from . import opcodes
 
 def addLineNums(codeatt, linenumatt):
     pc2ln = {}
